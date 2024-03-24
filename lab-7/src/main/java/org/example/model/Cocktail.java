@@ -1,14 +1,14 @@
 package org.example.model;
 
-import org.example.behavior.Beverage;
+import java.util.List;
 
 public class Cocktail extends AbstractBevarage {
-    public Cocktail(String type) {
-        super(type, "Cocktail");
+    public Cocktail(String type, List<String> recipe, List<String> ingredients, Float basePrice) {
+        super(type, "Cocktail", recipe, ingredients, basePrice);
     }
 
     @Override
-    public double cost() {
-        return 2.0;
+    public double getTotalPrice() {
+        return getBasePrice() * getVolume();
     }
 }

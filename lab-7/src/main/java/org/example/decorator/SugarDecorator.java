@@ -9,11 +9,11 @@ public class SugarDecorator extends BeverageDecorator {
 
     @Override
     public String getDescription() {
-        return beverage.getDescription() + ", Sugar";
+        return beverage.getDescription() + ", with Sugar";
     }
 
     @Override
-    public double cost() {
-        return beverage.cost() + 0.3;
+    public double getTotalPrice() {
+        return beverage.getTotalPrice() + 0.2;
     }
 }

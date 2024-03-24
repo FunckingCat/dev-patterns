@@ -2,6 +2,8 @@ package org.example.decorator;
 
 import org.example.behavior.Beverage;
 
+import java.util.List;
+
 public abstract class BeverageDecorator implements Beverage {
     protected Beverage beverage;
 
@@ -15,7 +17,7 @@ public abstract class BeverageDecorator implements Beverage {
     }
 
     @Override
-    public final String getVolume() {
+    public final double getVolume() {
         return beverage.getVolume();
     }
 
@@ -25,7 +27,27 @@ public abstract class BeverageDecorator implements Beverage {
     }
 
     @Override
-    public double cost() {
-        return beverage.cost();
+    public List<String> getRecipe() {
+        return beverage.getRecipe();
+    }
+
+    @Override
+    public void setRecipe(List<String> recipe) {
+        beverage.setRecipe(recipe);
+    }
+
+    @Override
+    public List<String> getIngredients() {
+        return beverage.getIngredients();
+    }
+
+    @Override
+    public void setIngredients(List<String> ingredients) {
+        beverage.setIngredients(ingredients);
+    }
+
+    @Override
+    public double getTotalPrice() {
+        return beverage.getTotalPrice();
     }
 }

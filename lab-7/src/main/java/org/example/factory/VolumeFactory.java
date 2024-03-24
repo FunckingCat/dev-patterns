@@ -13,12 +13,12 @@ public class VolumeFactory {
     }
 
     public static Beverage setVolume(Beverage beverage, Scanner input) {
+        System.out.println("CHOOSE VOLUME");
         List<String> output = Arrays.stream(Volume.values())
                 .map(type -> "[%d] - %s".formatted(type.ordinal(), type.name().toLowerCase()))
                 .toList();
-        System.out.println(output);
-        int value = input.nextInt();
-        Volume volume = Volume.values()[value];
+        System.out.println(String.join(" ", output));
+        Volume volume = Volume.values()[input.nextInt()];
         beverage.setVolume(switch (volume){
             case SMALL -> 0.2;
             case MEDIUM -> 0.4;

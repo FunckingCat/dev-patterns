@@ -1,12 +1,23 @@
 package org.example.behavior;
 
+import java.util.List;
+
 public interface Beverage {
 
     String getDescription();
 
-    String getVolume();
+    double getVolume();
 
     void setVolume(double volume);
 
-    double cost();
+    List<String> getRecipe();
+
+    void setRecipe(List<String> recipe);
+
+    List<String> getIngredients();
+
+    void setIngredients(List<String> ingredients);
+
+    double getTotalPrice();
+
 }

@@ -2,6 +2,8 @@ package org.example.decorator;
 
 import org.example.behavior.Beverage;
 
+import java.util.List;
+
 public class MilkDecorator extends BeverageDecorator {
     public MilkDecorator(Beverage beverage) {
         super(beverage);
@@ -9,11 +11,11 @@ public class MilkDecorator extends BeverageDecorator {
 
     @Override
     public String getDescription() {
-        return beverage.getDescription() + ", Milk";
+        return beverage.getDescription() + ", with Milk";
     }
 
     @Override
-    public double cost() {
-        return beverage.cost() + 0.5;
+    public double getTotalPrice() {
+        return beverage.getTotalPrice() + 0.5;
     }
 }
