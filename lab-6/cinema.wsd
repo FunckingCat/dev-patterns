@@ -1,0 +1,74 @@
+@startuml
+
+class Client {
+    - homeTheaterFacade: HomeTheaterFacade
+    + main(Object[] args)
+}
+
+class HomeTheaterFacade {
+    - tvStreaming: TvStreaming
+    - screen: Screen
+    - projector: Projector
+    - speakers: Speaker[]
+    + turnOn()
+    + turnOff()
+    + playMovie()
+    + stopMovie()
+}
+
+class TvStreaming {
+    + Pair<Audio, Video> play(Channel channel)
+    + pause()
+}
+
+class Screen {
+    + void rollDown()
+    + void rollUp()
+}
+
+class Projector {
+    + void turnOn()
+    + void turnOff()
+    + void display(Video video)
+}
+
+interface Speaker {
+    + void playSound(Audio audio)
+    + void stopSound()
+}
+
+class WiredSpeaker {
+    + void playSound(Audio audio)
+    + void stopSound()
+}
+
+class WirelessSpeaker {
+    + void transmitSound(Signal signal)
+}
+
+class WirelessSpeakerAdapter {
+    - isAudioPlaying: boolean
+    - wirelessSpeaker: WirelessSpeaker
+    - signalConverter: SignalConverter 
+    + void playSound(Audio audio)
+    + stopSound()
+}
+
+class SignalConverter {
+    + Signal convert(Audio audio)
+}
+
+Client o-- HomeTheaterFacade
+
+HomeTheaterFacade o-- TvStreaming
+HomeTheaterFacade o-- Screen
+HomeTheaterFacade o-- Projector
+HomeTheaterFacade o-- Speaker
+
+WirelessSpeakerAdapter o-- WirelessSpeaker
+WirelessSpeakerAdapter o-- SignalConverter
+
+Speaker <|.. WiredSpeaker
+Speaker <|.. WirelessSpeakerAdapter
+
+@enduml

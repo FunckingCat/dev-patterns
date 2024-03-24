@@ -1,0 +1,67 @@
+@startuml
+
+enum CommandType    
+
+interface Command {
+    + execute()
+}
+
+class LightOnCommand {
+    - light: Light
+    + execute()
+}
+
+class LightOffCommand {
+    - light: Light
+    + execute()
+}
+
+class TemperatureSetCommand {
+    - temperatureSensor: TemperatureSensor
+    + execute()
+}
+
+class HumiditySetCommand {
+    - humiditySensor: HumiditySensor
+    + execute()
+}
+
+class Light {
+    + turnOn()
+    + turnOff()
+}
+
+class TemperatureSensor {
+    + setTemperature(float temperature)
+}
+
+class HumiditySensor {
+    + setHumidity(float humidity)
+}
+
+class Display {
+    - HISTORY: CommandType[]
+    - commandFactory: CommandFactory
+    + launch(CommandType commandType)
+}
+
+class CommandFactory {
+    + Command buildCommand(CommandType commandType)
+}
+
+Display o-left- CommandFactory
+Display o--> Command
+Display -up- CommandType
+CommandFactory -up- CommandType
+CommandFactory -- Command
+Command <|.. LightOnCommand
+Command <|.. LightOffCommand
+Command <|.. TemperatureSetCommand
+Command <|.. HumiditySetCommand
+
+LightOnCommand -down-> Light
+LightOffCommand -down-> Light
+TemperatureSetCommand -down-> TemperatureSensor
+HumiditySetCommand -down-> HumiditySensor
+
+@enduml
